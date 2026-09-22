@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+@theme {
+    --color-background: #f6f3ef;
+    --color-foreground: #241f1c;
+    --color-primary: #c65338;
+    --color-primary-foreground: #fffaf7;
+    --color-muted: #756a63;
+    --color-card: #fffdfb;
+    --color-card-border: #e5ddd6;
+    --color-input: #ffffff;
+    --color-overlay: rgba(36, 31, 28, 0.42);
+    --color-success-background: #e8f3ec;
+    --color-success-border: #b8d7c1;
+    --color-success-foreground: #2e6848;
+    --color-danger: #b7462f;
+    --color-danger-hover: #963923;
+    --color-danger-background: #fbe9e4;
+    --color-danger-border: #e7b9ad;
+    --color-danger-foreground: #8d3325;
+    --color-heatmap-border: rgba(36, 31, 28, 0.08);
+    --color-gradient-start: #f7efe7;
+    --color-gradient-mid: #fffdfb;
+    --color-gradient-end: #f2e9df;
+    --color-glow-a: #efe2d5;
+    --color-glow-b: #e5d8cd;
+    --color-accent-0: #eee8e1;
+    --color-accent-1: #e6c7b6;
+    --color-accent-2: #db9b7d;
+    --color-accent-3: #cf7053;
+    --color-accent-4: #c65338;
+    --shadow-card: 0 18px 40px -34px rgba(74, 49, 35, 0.5);
+    --shadow-section: 0 10px 28px -24px rgba(74, 49, 35, 0.42);
+    --shadow-modal: 0 28px 58px -28px rgba(53, 39, 31, 0.48);
+    --shadow-drawer: -12px 0 28px -20px rgba(53, 39, 31, 0.42);
+    --font-sans: var(--font-space-grotesk);
+    --font-mono: var(--font-ibm-plex-mono);
+}
+
+:root {
+    color-scheme: light;
+    --shadow-button: 0 10px 24px -14px rgba(151, 57, 35, 0.55);
+}
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --color-background: #0d1117;
+    --color-foreground: #f0f6fc;
+    --color-primary: #0e7c72;
+    --color-primary-foreground: #ffffff;
+    --color-muted: #8b949e;
+    --color-card: #161b22;
+    --color-card-border: #30363d;
+    --color-input: #0d1117;
+    --color-overlay: rgba(1, 4, 9, 0.72);
+    --color-success-background: #12251a;
+    --color-success-border: #238636;
+    --color-success-foreground: #3fb950;
+    --color-danger: #da3633;
+    --color-danger-hover: #f85149;
+    --color-danger-background: #2c1616;
+    --color-danger-border: #f85149;
+    --color-danger-foreground: #ff7b72;
+    --color-heatmap-border: rgba(240, 246, 252, 0.12);
+    --color-gradient-start: #161b22;
+    --color-gradient-mid: #0d1117;
+    --color-gradient-end: #010409;
+    --color-glow-a: #161b22;
+    --color-glow-b: #21262d;
+    --color-accent-0: #21262d;
+    --color-accent-1: #4a2c0d;
+    --color-accent-2: #8a5113;
+    --color-accent-3: #d07f1a;
+    --color-accent-4: #f5b23c;
+    --shadow-button: 0 10px 24px -14px rgba(14, 124, 114, 0.7);
+    --shadow-card: 0 18px 40px -34px rgba(0, 0, 0, 0.85);
+    --shadow-section: 0 10px 28px -24px rgba(0, 0, 0, 0.8);
+    --shadow-modal: 0 28px 58px -28px rgba(0, 0, 0, 0.92);
+    --shadow-drawer: -12px 0 28px -20px rgba(0, 0, 0, 0.86);
+}
+
+body {
+    color: var(--color-foreground);
+    font-family: var(--font-space-grotesk), sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    background: var(--color-background);
+}
+
+.theme-gradient {
+    background: linear-gradient(
+        135deg,
+        var(--color-gradient-start),
+        var(--color-gradient-mid),
+        var(--color-gradient-end)
+    );
+}
+
+.shadow-button {
+    box-shadow: var(--shadow-button);
+}
+
+h1 {
+    @apply text-6xl leading-[1.04] font-normal tracking-[-0.03em] text-foreground;
+}
+
+h2 {
+    @apply text-4xl leading-[1.04] font-normal tracking-[-0.03em] text-foreground;
+}
+
+h3 {
+    @apply text-2xl leading-[1.04] font-normal tracking-[-0.03em] text-foreground;
+}
+
+h4 {
+    @apply text-xl leading-[1.04] font-normal tracking-[-0.03em] text-foreground;
+}
+
+@keyframes auth-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.auth-anim-shell {
+    opacity: 0;
+    animation: auth-fade-up 540ms cubic-bezier(0.2, 0.75, 0.25, 1) forwards;
+}
+
+.auth-anim-item {
+    opacity: 0;
+    animation: auth-fade-up 420ms cubic-bezier(0.2, 0.75, 0.25, 1) forwards;
+}
+
+.auth-anim-item-1 {
+    animation-delay: 90ms;
+}
+
+.auth-anim-item-2 {
+    animation-delay: 170ms;
+}
+
+.auth-anim-item-3 {
+    animation-delay: 250ms;
+}
+
+.auth-anim-item-4 {
+    animation-delay: 330ms;
+}
+
+.auth-anim-item-5 {
+    animation-delay: 410ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .auth-anim-shell,
+    .auth-anim-item,
+    .auth-anim-item-1,
+    .auth-anim-item-2,
+    .auth-anim-item-3,
+    .auth-anim-item-4,
+    .auth-anim-item-5 {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
