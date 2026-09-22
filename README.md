@@ -6,7 +6,7 @@ TinyWins is a habit tracker with a Go API, PostgreSQL database, and Next.js fron
 
 ## Preview
 
-![TinyWins product demo](./assets/recordly-gif.gif)
+![TinyWins product demo](./assets/tinywins-demo.gif)
 
 ## Requirements
 
