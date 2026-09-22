@@ -1,33 +1,36 @@
 # Graph Report - squares  (2026-09-22)
 
 ## Corpus Check
-- 68 files · ~144,172 words
+- 67 files · ~144,037 words
 - Verdict: corpus is large enough that graph structure adds value.
-- Unclassified: 8 file(s) not represented in the graph (top: (none) 3, .example 2, .ico 1)
+- Unclassified: 9 file(s) not represented in the graph (top: (none) 4, .example 2, .ico 1)
 
 ## Summary
-- 530 nodes · 1126 edges · 30 communities (22 shown, 8 thin omitted)
-- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 74 edges (avg confidence: 0.86)
+- 510 nodes · 1088 edges · 28 communities (20 shown, 8 thin omitted)
+- Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 65 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
 
+## Graph Freshness
+- Built from commit: `e53077aa`
+- Run `git rev-parse HEAD` and compare to check if the graph is stale.
+- Run `graphify update .` after code changes (no API cost).
+
 ## Community Hubs (Navigation)
-- Backend Domain and Stores
-- Backend App and Tests
+- context.Context
+- go_pkg_database_sql
 - Frontend Dashboard Flow
-- HTTP API and Routing
+- ErrorJSON
 - Frontend Build and Theme
 - TypeScript Configuration
-- Feature Roadmap
+- TinyWins Feature Roadmap
 - Dashboard UI Demo
 - Landing Page UI
 - Authentication UI Demo
 - Database Schema Migrations
 - Landing Page Visual
-- Backend API Documentation
-- Frontend Integration Docs
-- Repository Operations
-- Habit History Features
-- PostgreSQL Environments
+- database/sql.DB
+- .CreateNewUser
+- TinyWins
 - File Icon Asset
 - Graphify Plugin
 - Browser Window Asset
@@ -52,16 +55,16 @@
 10. `PostgresStore` - 13 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `Database Seeder Reset Flow` --semantically_similar_to--> `Database Seeding`  [INFERRED] [semantically similar]
-  AGENTS.md → backend/README.md
-- `Embedded Goose Migration Lifecycle` --semantically_similar_to--> `Goose Migrations`  [INFERRED] [semantically similar]
-  AGENTS.md → backend/README.md
 - `Individual Log Editing and Undo` --semantically_similar_to--> `Transactional Record and Undo Mutations`  [INFERRED] [semantically similar]
   FEATURE_IDEAS.md → AGENTS.md
-- `Backend Layered Architecture` --implements--> `Backend Go API`  [INFERRED]
-  AGENTS.md → backend/README.md
-- `Local Frontend CORS Origins` --conceptually_related_to--> `Habit Tracker Frontend`  [INFERRED]
-  backend/README.md → frontend/README.md
+- `Weekly and Monthly Completion Analytics` --conceptually_related_to--> `Habit Daily Totals`  [INFERRED]
+  FEATURE_IDEAS.md → AGENTS.md
+- `Current and Best Streak Tracking` --conceptually_related_to--> `Habit Daily Totals`  [INFERRED]
+  FEATURE_IDEAS.md → AGENTS.md
+- `Daily History and Calendar Views` --conceptually_related_to--> `Immutable Habit Logs`  [INFERRED]
+  FEATURE_IDEAS.md → AGENTS.md
+- `Habit Archiving with History Preservation` --conceptually_related_to--> `Immutable Habit Logs`  [INFERRED]
+  FEATURE_IDEAS.md → AGENTS.md
 
 ## Import Cycles
 - None detected.
@@ -77,27 +80,25 @@
 - **Landing to Authenticated Dashboard Journey** — frontend_demo2_landing_hero, frontend_demo2_start_tracking_cta, frontend_demo2_sign_in_form, frontend_demo2_login_success_feedback, frontend_demo2_dashboard [EXTRACTED 1.00]
 - **Activity Visualization Group** — frontend_tinywinslanding_activity_board, frontend_tinywinslanding_contribution_grid, frontend_tinywinslanding_six_month_timeline, frontend_tinywinslanding_last_26_weeks, frontend_tinywinslanding_intensity_legend [EXTRACTED 1.00]
 - **Hero Content Group** — frontend_tinywinslanding_brand_label, frontend_tinywinslanding_headline, frontend_tinywinslanding_supporting_copy, frontend_tinywinslanding_start_tracking_cta, frontend_tinywinslanding_demo_cta, frontend_tinywinslanding_progress_metrics [EXTRACTED 1.00]
-- **Isolated PostgreSQL Test Environment** — agents_postgresql_integration_tests, backend_docker_compose_development_postgresql, backend_docker_compose_test_postgresql [EXTRACTED 1.00]
-- **Session-Authenticated Frontend API Flow** — agents_nextjs_server_client_data_flow, frontend_readme_session_protected_dashboard, frontend_readme_shared_cookie_name, backend_readme_session_cookie_auth [EXTRACTED 1.00]
 - **Transactional Habit Logging Consistency** — agents_transactional_record_undo, agents_daily_totals, agents_immutable_habit_logs [EXTRACTED 1.00]
 
-## Communities (30 total, 8 thin omitted)
+## Communities (28 total, 8 thin omitted)
 
-### Community 0 - "Backend Domain and Stores"
-Cohesion: 0.06
-Nodes (29): GenerateToken(), HashPassword(), VerifyPassword(), HabitLog, Habit, NewHabitRequest, RecordHabitRequest, UpdateHabitRequest (+21 more)
+### Community 0 - "context.Context"
+Cohesion: 0.07
+Nodes (22): HabitLog, Habit, NewHabitRequest, RecordHabitRequest, UpdateHabitRequest, HabitDailyCount, HabitDailyTotal, Session (+14 more)
 
-### Community 1 - "Backend App and Tests"
-Cohesion: 0.06
-Nodes (75): main(), seed(), Migrate(), MigrateFS(), Open(), NewHabitHandler(), NewUserHandler(), Application (+67 more)
+### Community 1 - "go_pkg_database_sql"
+Cohesion: 0.08
+Nodes (37): main(), seed(), Open(), GetDbConnectionString(), go_pkg_context, go_pkg_database_sql, go_pkg_encoding_json, go_pkg_errors (+29 more)
 
 ### Community 2 - "Frontend Dashboard Flow"
 Cohesion: 0.05
 Nodes (52): CreateAccountPage(), DashboardLayout(), DashboardPage(), LEVEL_CLASSES, LoginPage(), LEVEL_CLASSES, LEVEL_LABELS, DashboardMotion() (+44 more)
 
-### Community 3 - "HTTP API and Routing"
-Cohesion: 0.15
-Nodes (23): HabitHandler, CreateCookie(), DecodeJSON(), DeleteCookie(), ErrorJSON(), SendJSON(), UserHandler, GetCookieName() (+15 more)
+### Community 3 - "ErrorJSON"
+Cohesion: 0.22
+Nodes (15): HabitHandler, CreateCookie(), DecodeJSON(), DeleteCookie(), ErrorJSON(), SendJSON(), UserHandler, GetCookieName() (+7 more)
 
 ### Community 4 - "Frontend Build and Theme"
 Cohesion: 0.05
@@ -107,9 +108,9 @@ Nodes (35): frontend_app_globals, ibmPlexMono, metadata, spaceGrotesk, ThemeTogg
 Cohesion: 0.11
 Nodes (18): compilerOptions, allowJs, esModuleInterop, incremental, isolatedModules, jsx, lib, module (+10 more)
 
-### Community 6 - "Feature Roadmap"
-Cohesion: 0.13
-Nodes (16): Calendar Integration, Habit Categories and Tags, Consistency Trends and Recovery Guidance, CSV and JSON History Export, Habit Data Import, Entry Notes and Mood, Flexible Habit Schedules, Activity-Based Goal Recommendations (+8 more)
+### Community 6 - "TinyWins Feature Roadmap"
+Cohesion: 0.06
+Nodes (38): Account Deletion API Gap, Backend Layered Architecture, Browser CORS and Cookie Contract, Habit Daily Totals, Database Seeder Reset Flow, Cross-Layer Date Consistency, Embedded Goose Migration Lifecycle, Explicit Habit Deletion Order (+30 more)
 
 ### Community 7 - "Dashboard UI Demo"
 Cohesion: 0.19
@@ -131,25 +132,17 @@ Nodes (6): users, sessions, habits, habit_entries, habit_daily_totals, idx_habit
 Cohesion: 0.21
 Nodes (12): Last 26 Weeks Contribution Heatmap, TinyWins Activity Board, Daily Actions as a Living Contribution Map, Less-to-More Activity Intensity Legend, October to March Timeline, Start Tracking Primary CTA, Build Streaks You Can See at a Glance, TinyWins Habit Tracker Landing Page (+4 more)
 
-### Community 12 - "Backend API Documentation"
-Cohesion: 0.22
-Nodes (11): Account Deletion API Gap, Backend Layered Architecture, Authentication, Backend Go API, Chi Router, Session-Protected API Routes, Public API Routes, Session Cookie Authentication (+3 more)
+### Community 12 - "database/sql.DB"
+Cohesion: 0.12
+Nodes (44): Migrate(), MigrateFS(), NewHabitHandler(), NewUserHandler(), Application, NewApplication(), SetupRoutes(), AuthService (+36 more)
 
-### Community 13 - "Frontend Integration Docs"
-Cohesion: 0.22
-Nodes (11): Browser CORS and Cookie Contract, Habit Management, Local Frontend CORS Origins, Habit Editing, Bun, Habit Creation Request, Habit List Request, Habit Tracker Frontend (+3 more)
+### Community 13 - ".CreateNewUser"
+Cohesion: 0.20
+Nodes (9): GenerateToken(), HashPassword(), VerifyPassword(), LoginUserRequest, NewUserRequest, UpdateUserRequest, go_pkg_crypto_rand, go_pkg_encoding_hex (+1 more)
 
-### Community 14 - "Repository Operations"
-Cohesion: 0.18
-Nodes (11): Database Seeder Reset Flow, Cross-Layer Date Consistency, Embedded Goose Migration Lifecycle, Authenticated Habit Ownership Scope, Independent Backend and Frontend Roots, Next.js Server and Client Data Flow, PostgreSQL Integration Test Isolation, Repository Guide (+3 more)
-
-### Community 15 - "Habit History Features"
-Cohesion: 0.25
-Nodes (9): Habit Daily Totals, Explicit Habit Deletion Order, Immutable Habit Logs, Transactional Record and Undo Mutations, Weekly and Monthly Completion Analytics, Daily History and Calendar Views, Habit Archiving with History Preservation, Individual Log Editing and Undo (+1 more)
-
-### Community 16 - "PostgreSQL Environments"
-Cohesion: 0.47
-Nodes (6): Development PostgreSQL Service, Development PostgreSQL Volume, PostgreSQL 18.3 Alpine Image, Test PostgreSQL Service, Test PostgreSQL Volume, PostgreSQL
+### Community 14 - "TinyWins"
+Cohesion: 0.33
+Nodes (5): Requirements, Run Locally, Seed Data, TinyWins, Verify
 
 ### Community 17 - "File Icon Asset"
 Cohesion: 0.40
@@ -172,24 +165,24 @@ Cohesion: 1.00
 Nodes (3): Vercel Logo Asset, Vercel Platform Branding, Vercel Triangle Mark
 
 ## Knowledge Gaps
-- **115 isolated node(s):** `$schema`, `plugin`, `github.com/Fozzyack/habit-tracker`, `LEVEL_CLASSES`, `spaceGrotesk` (+110 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 152 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **120 isolated node(s):** `$schema`, `plugin`, `github.com/Fozzyack/habit-tracker`, `LEVEL_CLASSES`, `spaceGrotesk` (+115 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 160 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
 - **8 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `HabitService` connect `Backend App and Tests` to `Backend Domain and Stores`, `HTTP API and Routing`?**
-  _High betweenness centrality (0.027) - this node is a cross-community bridge._
-- **Why does `seed()` connect `Backend App and Tests` to `Backend Domain and Stores`?**
-  _High betweenness centrality (0.020) - this node is a cross-community bridge._
+- **Why does `HabitService` connect `context.Context` to `go_pkg_database_sql`, `ErrorJSON`, `database/sql.DB`?**
+  _High betweenness centrality (0.029) - this node is a cross-community bridge._
+- **Why does `seed()` connect `go_pkg_database_sql` to `context.Context`, `database/sql.DB`, `.CreateNewUser`?**
+  _High betweenness centrality (0.022) - this node is a cross-community bridge._
 - **Why does `next` connect `Frontend Dashboard Flow` to `Frontend Build and Theme`?**
-  _High betweenness centrality (0.013) - this node is a cross-community bridge._
+  _High betweenness centrality (0.015) - this node is a cross-community bridge._
 - **What connects `$schema`, `plugin`, `github.com/Fozzyack/habit-tracker` to the rest of the system?**
-  _115 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `Backend Domain and Stores` be split into smaller, more focused modules?**
-  _Cohesion score 0.05767543859649123 - nodes in this community are weakly interconnected._
-- **Should `Backend App and Tests` be split into smaller, more focused modules?**
-  _Cohesion score 0.0626674912389198 - nodes in this community are weakly interconnected._
+  _120 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `context.Context` be split into smaller, more focused modules?**
+  _Cohesion score 0.06839945280437756 - nodes in this community are weakly interconnected._
+- **Should `go_pkg_database_sql` be split into smaller, more focused modules?**
+  _Cohesion score 0.0822746521476104 - nodes in this community are weakly interconnected._
 - **Should `Frontend Dashboard Flow` be split into smaller, more focused modules?**
   _Cohesion score 0.053923541247484906 - nodes in this community are weakly interconnected._

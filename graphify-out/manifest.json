@@ -276,9 +276,9 @@
     "semantic_hash": "cb6984e2763c8583d4e3d3d34bc86c5a"
   },
   "frontend/app/login/page.tsx": {
-    "mtime": 1790084851.025061,
-    "seen": 1790084856.2119224,
-    "ast_hash": "dc6a155c04d27f58fb2bc5ba49f1c6a6",
+    "mtime": 1790084891.6490495,
+    "seen": 1790085429.369392,
+    "ast_hash": "de335d0a7441fe9a5420c2100d82a444",
     "semantic_hash": ""
   },
   "frontend/app/page.tsx": {
@@ -383,24 +383,6 @@
     "ast_hash": "be2a5742d6bc1c51460777b4f8571eb2",
     "semantic_hash": "be2a5742d6bc1c51460777b4f8571eb2"
   },
-  "backend/README.md": {
-    "mtime": 1789560248.4884596,
-    "seen": 1790082832.250856,
-    "ast_hash": "a50eb3a2a8d64be13f08bd92196d4244",
-    "semantic_hash": "a50eb3a2a8d64be13f08bd92196d4244"
-  },
-  "backend/docker-compose.yaml": {
-    "mtime": 1789560248.3733287,
-    "seen": 1790082832.2508562,
-    "ast_hash": "8af32fd61d48f4870a355bc51d9fdf21",
-    "semantic_hash": "8af32fd61d48f4870a355bc51d9fdf21"
-  },
-  "frontend/README.md": {
-    "mtime": 1773241060.0229607,
-    "seen": 1790082832.2508566,
-    "ast_hash": "c3b7cd71e29aa7914f205efe26a3ca80",
-    "semantic_hash": "c3b7cd71e29aa7914f205efe26a3ca80"
-  },
   "backend/output.gif": {
     "mtime": 1773241065.0389614,
     "seen": 1790082832.2508569,
@@ -465,6 +447,18 @@
     "mtime": 1790083696.7013745,
     "seen": 1790083732.0812283,
     "ast_hash": "ef587892967450f69c75de9c631c451e",
+    "semantic_hash": ""
+  },
+  "README.md": {
+    "mtime": 1790085420.9769044,
+    "seen": 1790085429.3694057,
+    "ast_hash": "aa38e99998325ac11aea75175d3da653",
+    "semantic_hash": ""
+  },
+  "docker-compose.yaml": {
+    "mtime": 1790085098.4209917,
+    "seen": 1790085429.3694067,
+    "ast_hash": "8af32fd61d48f4870a355bc51d9fdf21",
     "semantic_hash": ""
   }
 }

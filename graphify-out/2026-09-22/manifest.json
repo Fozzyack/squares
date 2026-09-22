@@ -246,9 +246,9 @@
     "semantic_hash": "d1d10448f59bb4d2f76e177a6163b139"
   },
   "frontend/app/create-account/page.tsx": {
-    "mtime": 1790084151.2052486,
-    "seen": 1790084169.43022,
-    "ast_hash": "ca129f6cb682a281a62dab90246fa1cf",
+    "mtime": 1790084636.4091182,
+    "seen": 1790084640.2289748,
+    "ast_hash": "38caf67f6bf2f27e0105b5ed463c6741",
     "semantic_hash": ""
   },
   "frontend/app/dashboard/layout.tsx": {
@@ -276,9 +276,9 @@
     "semantic_hash": "cb6984e2763c8583d4e3d3d34bc86c5a"
   },
   "frontend/app/login/page.tsx": {
-    "mtime": 1790084132.145254,
-    "seen": 1790084169.430224,
-    "ast_hash": "8b2f234d8496f5a25c5b0121be397d09",
+    "mtime": 1790084851.025061,
+    "seen": 1790084856.2119224,
+    "ast_hash": "dc6a155c04d27f58fb2bc5ba49f1c6a6",
     "semantic_hash": ""
   },
   "frontend/app/page.tsx": {
