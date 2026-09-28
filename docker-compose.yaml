@@ -40,8 +40,8 @@ services:
       - DATABASE_URL=postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@db:5432/${POSTGRES_DB:-squares}
       - COOKIE_NAME=${COOKIE_NAME:-tiny-wins}
       - COOKIE_SECURE=${COOKIE_SECURE:-true}
-      - FRONTEND_URL=https://${DOMAIN}
-      - CORS_ALLOWED_ORIGINS=https://${DOMAIN}
+      - FRONTEND_URL=https://${DOMAIN:-tinywins.frasier.dev}
+      - CORS_ALLOWED_ORIGINS=https://${DOMAIN:-tinywins.frasier.dev}
     depends_on:
       db:
         condition: service_healthy
@@ -52,7 +52,7 @@ services:
     build:
       context: ./frontend
       args:
-        NEXT_PUBLIC_BACKEND_URL: ${NEXT_PUBLIC_BACKEND_URL:-/api}
+        NEXT_PUBLIC_BACKEND_URL: /api
         NEXT_PUBLIC_COOKIE_NAME: ${COOKIE_NAME:-tiny-wins}
     container_name: habbit_tracker_web
     environment:
@@ -67,8 +67,8 @@ services:
     image: caddy:2-alpine
     container_name: habbit_tracker_caddy
     environment:
-      - DOMAIN=${DOMAIN}
-      - ACME_EMAIL=${ACME_EMAIL:-admin@${DOMAIN}}
+      - DOMAIN=${DOMAIN:-tinywins.frasier.dev}
+      - ACME_EMAIL=${ACME_EMAIL:-admin@${DOMAIN:-tinywins.frasier.dev}}
     ports:
       - 80:80
       - 443:443

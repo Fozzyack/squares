@@ -57,9 +57,10 @@ talks to one origin and Caddy obtains a TLS certificate automatically.
 cp .env.example .env
 ```
 
-Set `DOMAIN` to your domain and optionally `ACME_EMAIL` for certificate expiry
-notices. Change `POSTGRES_PASSWORD`. Secure cookies require HTTPS, which Caddy
-provides, so keep `COOKIE_SECURE=true`.
+The `.env` file is not committed, so Compose falls back to `DOMAIN=tinywins.frasier.dev`
+and a default database password if it is missing. Create it to override the domain,
+set `ACME_EMAIL` for certificate expiry notices, and change `POSTGRES_PASSWORD`.
+Secure cookies require HTTPS, which Caddy provides, so keep `COOKIE_SECURE=true`.
 
 3. Build and start the stack.
 
@@ -71,6 +72,40 @@ The site is served at `https://$DOMAIN` and the API at `https://$DOMAIN/api`.
 Only Caddy is exposed publicly; the API (`8800`), frontend (`3000`) and database
 (`5499`/`5501`) are bound to `127.0.0.1`. Certificates are stored in the
 `caddy_data` volume, so back it up and keep it across deployments.
+
+The browser API URL is fixed to the same-origin `/api` and is baked into the
+frontend at build time. After pulling changes, rebuild the web image so the bundle
+is regenerated:
+
+```bash
+docker compose build web && docker compose up -d
+```
+
+### Checking Ports 80 And 443
+
+Test from a machine **outside** the VPS — a server can often reach its own public
+IP even when the provider blocks inbound traffic.
+
+```bash
+nc -vz tinywins.frasier.dev 80
+nc -vz tinywins.frasier.dev 443
+curl -I http://tinywins.frasier.dev
+```
+
+On the VPS, confirm Caddy is listening and inspect host firewalls:
+
+```bash
+ss -tlnp | grep -E ':(80|443)\b'
+sudo ufw status verbose          # ufw
+sudo nft list ruleset            # nftables
+sudo firewall-cmd --list-all     # firewalld
+```
+
+Also check the provider console for a security group, firewall, or network ACL;
+some hosts (e.g. Oracle Cloud) block inbound traffic by default. Docker publishes
+ports through its own iptables rules, so `ufw` may not reflect Docker traffic. If
+`80` is blocked but `443` is open, Caddy can still issue certificates via the
+TLS-ALPN challenge on `443`.
 
 ## Seed Data
 
