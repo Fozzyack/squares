@@ -94,7 +94,7 @@ export default function Home() {
             ref={scope}
         >
             <div className="theme-gradient absolute inset-0 -z-10 rounded-3xl" />
-            <main className="mx-auto grid min-h-[calc(100vh-2rem)] max-w-[1140px] items-center gap-7 py-4 md:min-h-[calc(100vh-4rem)] md:grid-cols-[minmax(0,1fr)_minmax(320px,520px)] md:gap-14 md:py-0">
+            <main className="mx-auto grid min-h-[calc(100vh-2rem)] max-w-[1140px] items-center gap-7 py-4 md:min-h-[calc(100vh-4rem)] lg:grid-cols-[minmax(0,1fr)_minmax(320px,520px)] lg:gap-14 lg:py-0">
                 <section className="max-w-[560px]">
                     <p
                         className="m-0 text-[0.74rem] font-semibold uppercase tracking-[0.12em] text-muted"
