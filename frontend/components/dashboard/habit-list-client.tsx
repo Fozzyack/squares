@@ -2,6 +2,7 @@
 
 import { HabitRecordButton } from "@/components/dashboard/habit-record-button";
 import { getBackendUrl } from "@/utils/env";
+import { getTodayKey, toDateKey } from "@/utils/date";
 import { useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import { useRouter } from "next/navigation";
@@ -41,13 +42,6 @@ function mapCountToLevel(count: number, goal: number) {
 
     const safeGoal = Math.max(goal, 1);
     return Math.max(1, Math.min(4, Math.ceil((count / safeGoal) * 4)));
-}
-
-function toDateKey(date: Date) {
-    const year = date.getFullYear();
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const day = String(date.getDate()).padStart(2, "0");
-    return `${year}-${month}-${day}`;
 }
 
 function toDayMonthLabel(dateKey: string) {
@@ -144,7 +138,7 @@ function HabitListItem({
     onSquareClick,
     onSettingsClick,
 }: HabitListItemProps) {
-    const todayKey = toDateKey(new Date());
+    const todayKey = getTodayKey();
     const todayCount =
         habit.dailyCounts.find(
             (entry) => entry.date.slice(0, 10) === todayKey,

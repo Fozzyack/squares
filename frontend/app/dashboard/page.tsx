@@ -5,6 +5,7 @@ import {
 } from "@/components/dashboard/habit-list";
 import { DashboardMotion } from "@/components/dashboard/dashboard-motion";
 import { NewHabitForm } from "@/components/dashboard/new-habit-form";
+import { getTodayKey } from "@/utils/date";
 
 const DashboardPage = async () => {
     let habits: HabitWithActivity[] = [];
@@ -16,13 +17,19 @@ const DashboardPage = async () => {
         fetchError = true;
     }
 
+    const todayKey = getTodayKey();
+    const countForToday = (habit: HabitWithActivity) =>
+        habit.dailyCounts.find(
+            (entry) => entry.date.slice(0, 10) === todayKey,
+        )?.count ?? 0;
+
     const completedToday = habits.filter(
-        (habit) => (habit.dailyCounts.at(-1)?.count ?? 0) >= habit.goal,
+        (habit) => countForToday(habit) >= habit.goal,
     ).length;
     const completion = habits.length
         ? Math.round(
               (habits.reduce((total, habit) => {
-                  const count = habit.dailyCounts.at(-1)?.count ?? 0;
+                  const count = countForToday(habit);
                   return total + Math.min(1, count / Math.max(habit.goal, 1));
               }, 0) /
                   habits.length) *

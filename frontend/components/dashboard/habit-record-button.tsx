@@ -1,6 +1,7 @@
 "use client";
 
 import { getBackendUrl } from "@/utils/env";
+import { getTodayKey } from "@/utils/date";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -11,14 +12,6 @@ type HabitRecordButtonProps = {
     unit: string | null;
     color: string | null;
 };
-
-function getTodayDateString() {
-    const now = new Date();
-    const year = now.getFullYear();
-    const month = `${now.getMonth() + 1}`.padStart(2, "0");
-    const day = `${now.getDate()}`.padStart(2, "0");
-    return `${year}-${month}-${day}`;
-}
 
 export function HabitRecordButton({
     habitId,
@@ -46,7 +39,7 @@ export function HabitRecordButton({
         setIsSubmitting(true);
         setIsUndoing(undo);
         setErrorMsg("");
-        const date = getTodayDateString();
+        const date = getTodayKey();
 
         try {
             const response = await fetch(
