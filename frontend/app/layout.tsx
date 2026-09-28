@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
+import Script from "next/script";
 import { ThemeToggle } from "@/components/theme-toggle";
 import "./globals.css";
 
@@ -27,14 +28,14 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
+            <head>
+                <Script id="theme-init" strategy="beforeInteractive">
+                    {`(() => { try { const saved = localStorage.getItem("tiny-wins-theme"); const theme = saved === "dark" || saved === "light" ? saved : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); document.documentElement.dataset.theme = theme; } catch {} })();`}
+                </Script>
+            </head>
             <body
                 className={`${spaceGrotesk.variable} ${ibmPlexMono.variable} antialiased`}
             >
-                <script
-                    dangerouslySetInnerHTML={{
-                        __html: `(() => { try { const saved = localStorage.getItem("tiny-wins-theme"); const theme = saved === "dark" || saved === "light" ? saved : (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); document.documentElement.dataset.theme = theme; } catch {} })();`,
-                    }}
-                />
                 <ThemeToggle />
                 {children}
             </body>

@@ -9,7 +9,16 @@ export function ThemeToggle() {
     const [isDark, setIsDark] = useState(false);
 
     useEffect(() => {
-        setIsDark(document.documentElement.dataset.theme === "dark");
+        const saved = localStorage.getItem(THEME_KEY);
+        const theme =
+            saved === "dark" || saved === "light"
+                ? saved
+                : window.matchMedia("(prefers-color-scheme: dark)").matches
+                  ? "dark"
+                  : "light";
+
+        document.documentElement.dataset.theme = theme;
+        setIsDark(theme === "dark");
     }, []);
 
     const toggleTheme = () => {
