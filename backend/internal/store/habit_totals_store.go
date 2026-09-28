@@ -169,20 +169,12 @@ func (ps *PostgresStore) GetDailyHabitTotalTx(ctx context.Context, tx *sql.Tx, h
 
 func (ps *PostgresStore) GetHabitYearDailyCounts(ctx context.Context, habitId, userId string) ([]*models.HabitDailyCount, error) {
 	query := `
-	WITH days AS (
-		SELECT generate_series(
-			CURRENT_DATE - INTERVAL '364 days',
-			CURRENT_DATE,
-			INTERVAL '1 day'
-		)::date AS day
-	)
-	SELECT d.day, COALESCE(hdt.amount, 0) AS count
-	FROM days d
-	LEFT JOIN habit_daily_totals hdt
-		ON hdt.date = d.day
-		AND hdt.habit_id = $1
-		AND hdt.user_id = $2
-	ORDER BY d.day ASC
+	SELECT date, amount
+	FROM habit_daily_totals
+	WHERE habit_id = $1
+		AND user_id = $2
+		AND date >= CURRENT_DATE - INTERVAL '366 days'
+	ORDER BY date ASC
 	`
 
 	rows, err := ps.db.QueryContext(ctx, query, habitId, userId)

@@ -44,9 +44,9 @@ function mapCountToLevel(count: number, goal: number) {
 }
 
 function toDateKey(date: Date) {
-    const year = date.getUTCFullYear();
-    const month = String(date.getUTCMonth() + 1).padStart(2, "0");
-    const day = String(date.getUTCDate()).padStart(2, "0");
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
     return `${year}-${month}-${day}`;
 }
 
@@ -100,7 +100,7 @@ function buildHeatmap(
 
     return Array.from({ length: HEATMAP_DAYS }, (_, index): HeatmapDay => {
         const date = new Date(today);
-        date.setUTCDate(today.getUTCDate() - (HEATMAP_DAYS - 1 - index));
+        date.setDate(today.getDate() - (HEATMAP_DAYS - 1 - index));
         const dateKey = toDateKey(date);
         const count = countByDay.get(dateKey) ?? 0;
 
@@ -144,7 +144,11 @@ function HabitListItem({
     onSquareClick,
     onSettingsClick,
 }: HabitListItemProps) {
-    const todayCount = habit.dailyCounts.at(-1)?.count ?? 0;
+    const todayKey = toDateKey(new Date());
+    const todayCount =
+        habit.dailyCounts.find(
+            (entry) => entry.date.slice(0, 10) === todayKey,
+        )?.count ?? 0;
     const completion = Math.max(
         0,
         Math.min(100, Math.round((todayCount / Math.max(habit.goal, 1)) * 100)),
