@@ -31,7 +31,9 @@ cp frontend/.env.example frontend/.env.local
 cd frontend && bun install && bun dev
 ```
 
-`NEXT_PUBLIC_BACKEND_URL` must point to the API and `NEXT_PUBLIC_COOKIE_NAME` must match the backend `COOKIE_NAME`.
+The browser calls the same-origin `/api` path, which the Next.js dev server
+rewrites to the API at `BACKEND_URL` (default `http://localhost:8800`).
+`NEXT_PUBLIC_COOKIE_NAME` must match the backend `COOKIE_NAME`.
 
 3. Start the API in another terminal.
 
@@ -73,12 +75,11 @@ Only Caddy is exposed publicly; the API (`8800`), frontend (`3000`) and database
 (`5499`/`5501`) are bound to `127.0.0.1`. Certificates are stored in the
 `caddy_data` volume, so back it up and keep it across deployments.
 
-The browser API URL is fixed to the same-origin `/api` and is baked into the
-frontend at build time. After pulling changes, rebuild the web image so the bundle
-is regenerated:
+The browser always calls the same-origin `/api` path, so the frontend needs no
+domain or API URL at build time. After pulling changes, rebuild the images:
 
 ```bash
-docker compose build web && docker compose up -d
+docker compose up -d --build
 ```
 
 ### Checking Ports 80 And 443
