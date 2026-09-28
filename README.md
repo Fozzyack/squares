@@ -41,6 +41,30 @@ cd backend && go run .
 
 Open `http://localhost:3000`.
 
+## Deploy With Docker
+
+The root `docker-compose.yaml` builds the API and frontend images and runs them
+alongside PostgreSQL.
+
+1. Create a root `.env` from the example and set your public URLs.
+
+```bash
+cp .env.example .env
+```
+
+`NEXT_PUBLIC_BACKEND_URL` is baked into the frontend at build time, so set it to
+the URL the browser uses to reach the API before building. Set `COOKIE_SECURE=false`
+when serving over plain HTTP.
+
+2. Build and start the stack.
+
+```bash
+docker compose up -d --build
+```
+
+The frontend is served on port 3000 and the API on port 8800. Database ports are
+bound to `127.0.0.1` so they are not exposed publicly.
+
 ## Seed Data
 
 The seeder migrates the database and clears existing application data.

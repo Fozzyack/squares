@@ -1,4 +1,4 @@
-import { getBackendUrl } from "@/utils/env";
+import { getServerBackendUrl } from "@/utils/env";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { UserAccountDialog } from "@/components/dashboard/user-account-form";
@@ -25,7 +25,7 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
         redirect("/login");
     }
     try {
-        const res = await fetch(`${getBackendUrl()}/users`, {
+        const res = await fetch(`${getServerBackendUrl()}/users`, {
             credentials: "include",
             headers: {
                 Cookie: `${cookie.name}=${cookie.value}`,

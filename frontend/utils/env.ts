@@ -1,7 +1,10 @@
 export const getBackendUrl = () => {
     const url = process.env.NEXT_PUBLIC_BACKEND_URL;
-    if (url === "") {
+    if (!url) {
         throw new Error("NEXT_PUBLIC_BACKEND_URL returning empty, is it set?");
     }
     return url;
 };
+
+export const getServerBackendUrl = () =>
+    process.env.BACKEND_URL || getBackendUrl();

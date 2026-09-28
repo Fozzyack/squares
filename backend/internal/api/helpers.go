@@ -3,10 +3,21 @@ package api
 import (
 	"encoding/json"
 	"net/http"
+	"os"
+	"strconv"
 	"time"
 
 	"github.com/Fozzyack/habit-tracker/internal/env"
 )
+
+func cookieSecure() bool {
+	if raw := os.Getenv("COOKIE_SECURE"); raw != "" {
+		if value, err := strconv.ParseBool(raw); err == nil {
+			return value
+		}
+	}
+	return env.GetProduction()
+}
 
 func SendJSON(w http.ResponseWriter, payload interface{}) {
 	w.Header().Set("Content-Type", "application/json")
@@ -41,7 +52,7 @@ func DeleteCookie() (*http.Cookie, error) {
 		MaxAge:   -1,
 		Expires:  time.Unix(0, 0),
 	}
-	if env.GetProduction() {
+	if cookieSecure() {
 		cookie.Secure = true
 	}
 	return cookie, nil
@@ -60,7 +71,7 @@ func CreateCookie(value string, expires_at time.Time) (*http.Cookie, error) {
 		SameSite: http.SameSiteLaxMode,
 		Expires:  expires_at,
 	}
-	if env.GetProduction() {
+	if cookieSecure() {
 		cookie.Secure = true
 	}
 	return cookie, nil

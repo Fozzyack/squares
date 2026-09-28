@@ -3,13 +3,23 @@ services:
     image: postgres:18.3-alpine3.23
     container_name: habbit_tracker_db
     environment:
-      - POSTGRES_PASSWORD=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_DB=squares
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-postgres}
+      - POSTGRES_USER=${POSTGRES_USER:-postgres}
+      - POSTGRES_DB=${POSTGRES_DB:-squares}
     ports:
-      - 5499:5432
+      - 127.0.0.1:5499:5432
     volumes:
       - habbit_tracker:/var/lib/postgresql
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-squares}",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
   db-test:
     image: postgres:18.3-alpine3.23
     container_name: habbit_tracker_db_test
@@ -18,9 +28,41 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_DB=squares
     ports:
-      - 5501:5432
+      - 127.0.0.1:5501:5432
     volumes:
       - habbit_tracker_test:/var/lib/postgresql
+  api:
+    build:
+      context: ./backend
+    container_name: habbit_tracker_api
+    environment:
+      - ENVIRONMENT=${ENVIRONMENT:-prod}
+      - DATABASE_URL=postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:-postgres}@db:5432/${POSTGRES_DB:-squares}
+      - COOKIE_NAME=${COOKIE_NAME:-tiny-wins}
+      - COOKIE_SECURE=${COOKIE_SECURE:-false}
+      - FRONTEND_URL=${FRONTEND_URL:-http://localhost:3000}
+      - CORS_ALLOWED_ORIGINS=${CORS_ALLOWED_ORIGINS:-http://localhost:3000}
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - 8800:8800
+    restart: unless-stopped
+  web:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_BACKEND_URL: ${NEXT_PUBLIC_BACKEND_URL:-http://localhost:8800}
+        NEXT_PUBLIC_COOKIE_NAME: ${COOKIE_NAME:-tiny-wins}
+    container_name: habbit_tracker_web
+    environment:
+      - BACKEND_URL=http://api:8800
+      - NEXT_PUBLIC_COOKIE_NAME=${COOKIE_NAME:-tiny-wins}
+    depends_on:
+      - api
+    ports:
+      - 3000:3000
+    restart: unless-stopped
 
 volumes:
   habbit_tracker:
