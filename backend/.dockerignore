@@ -1,0 +1,7 @@
+.env
+.env.*
+!.env.example
+tests
+*.png
+Dockerfile
+.dockerignore
