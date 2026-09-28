@@ -9,7 +9,8 @@
 ## Setup And Runtime
 
 - Backend requires Go 1.26.1. `go run .` unconditionally loads `backend/.env` before reading configuration, so that file must exist even when variables are exported in the shell.
-- From the repository root, start development PostgreSQL with `docker compose -f backend/docker-compose.yaml up -d db`. Compose creates database `squares` on port 5499, but `backend/.env.example` incorrectly uses `/habbittracker`; change `DATABASE_URL` to end in `/squares`.
+- From the repository root, start development PostgreSQL with `docker compose up -d db`. Compose creates database `squares` on port 5499, but `backend/.env.example` incorrectly uses `/habbittracker`; change `DATABASE_URL` to end in `/squares`.
+- `docker compose up -d --build` deploys the full stack: Caddy (`Caddyfile`) terminates TLS for `DOMAIN` and proxies `/api/*` to `api:8800`, everything else to `web:3000`. The browser uses the same-origin `/api` build arg, while server components reach the API internally via `BACKEND_URL=http://api:8800`; only Caddy's ports 80/443 are public.
 - SQL migrations are embedded from `backend/migrations/*.sql` and run automatically on API, seeder, and test startup. Add numbered Goose SQL files directly in that directory; no Goose CLI step is needed.
 - The seeder, `cd backend && go run ./cmd/seed`, migrates and then truncates application data. Its current login is `john@example.com` / `password123`; the README's seed email is stale.
 - Frontend uses Bun and requires `NEXT_PUBLIC_BACKEND_URL`; `NEXT_PUBLIC_COOKIE_NAME` must equal backend `COOKIE_NAME`. The `NDOE_ENV` entry in `frontend/.env.example` is misspelled and unused.
@@ -26,7 +27,7 @@
 - Preserve habit ownership checks: store queries and service calls scope habit data by both `habit_id` and authenticated `user_id`.
 - Keep record/undo mutations transactional: daily totals and immutable habit logs must change together. Habit deletion explicitly removes logs, then totals, then the habit because foreign keys do not cascade.
 - API date strings are strict `YYYY-MM-DD`. Date behavior currently spans browser-local dates, UTC heatmap keys, and PostgreSQL `CURRENT_DATE`; coordinate all three when changing date logic.
-- Backend CORS origins are hard-coded in `internal/routes/routes.go`; `FRONTEND_URL` and `FRONTEND_URL_DEV` are currently unused. Browser API calls depend on those origins and the shared cookie name.
+- Backend CORS origins come from `CORS_ALLOWED_ORIGINS` (comma-separated), falling back to `FRONTEND_URL`, `FRONTEND_URL_DEV`, and localhost in `internal/routes/routes.go`. Browser API calls depend on those origins and the shared cookie name. `COOKIE_SECURE` overrides the production default for the session cookie's `Secure` flag.
 - Do not assume account deletion works: the frontend sends `DELETE /users`, but the backend currently registers only `GET` and `PUT` for protected `/users`.
 - Frontend formatting is four spaces with semicolons (`frontend/.prettierrc`); TypeScript is strict and `@/*` resolves from the frontend root.
 

@@ -1,4 +1,4 @@
-import { getBackendUrl } from "@/utils/env";
+import { getServerBackendUrl } from "@/utils/env";
 import { cookies } from "next/headers";
 import { HabitListClient } from "@/components/dashboard/habit-list-client";
 
@@ -31,7 +31,7 @@ export async function getHabitsWithActivity() {
 
     const cookieHeader = `${sessionCookie.name}=${sessionCookie.value}`;
 
-    const response = await fetch(`${getBackendUrl()}/habits`, {
+    const response = await fetch(`${getServerBackendUrl()}/habits`, {
         cache: "no-store",
         headers: {
             Cookie: cookieHeader,
@@ -49,7 +49,7 @@ export async function getHabitsWithActivity() {
         habits.map(async (habit) => {
             try {
                 const recordsResponse = await fetch(
-                    `${getBackendUrl()}/habits/${habit.id}/records`,
+                    `${getServerBackendUrl()}/habits/${habit.id}/records`,
                     {
                         cache: "no-store",
                         headers: {

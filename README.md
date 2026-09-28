@@ -44,26 +44,33 @@ Open `http://localhost:3000`.
 ## Deploy With Docker
 
 The root `docker-compose.yaml` builds the API and frontend images and runs them
-alongside PostgreSQL.
+behind [Caddy](https://caddyserver.com/) alongside PostgreSQL. Caddy serves the
+frontend and reverse-proxies `/api/*` to the Go API, so the browser only ever
+talks to one origin and Caddy obtains a TLS certificate automatically.
 
-1. Create a root `.env` from the example and set your public URLs.
+1. Point an `A`/`AAAA` record for your domain at the server and open ports `80`
+   and `443`.
+
+2. Create a root `.env` from the example.
 
 ```bash
 cp .env.example .env
 ```
 
-`NEXT_PUBLIC_BACKEND_URL` is baked into the frontend at build time, so set it to
-the URL the browser uses to reach the API before building. Set `COOKIE_SECURE=false`
-when serving over plain HTTP.
+Set `DOMAIN` to your domain and optionally `ACME_EMAIL` for certificate expiry
+notices. Change `POSTGRES_PASSWORD`. Secure cookies require HTTPS, which Caddy
+provides, so keep `COOKIE_SECURE=true`.
 
-2. Build and start the stack.
+3. Build and start the stack.
 
 ```bash
 docker compose up -d --build
 ```
 
-The frontend is served on port 3000 and the API on port 8800. Database ports are
-bound to `127.0.0.1` so they are not exposed publicly.
+The site is served at `https://$DOMAIN` and the API at `https://$DOMAIN/api`.
+Only Caddy is exposed publicly; the API (`8800`), frontend (`3000`) and database
+(`5499`/`5501`) are bound to `127.0.0.1`. Certificates are stored in the
+`caddy_data` volume, so back it up and keep it across deployments.
 
 ## Seed Data
 
