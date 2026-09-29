@@ -153,7 +153,7 @@ function HabitListItem({
     return (
         <li
             data-habit-item
-            className="rounded-xl border border-card-border bg-background/65 px-4 py-3"
+            className="rounded-md border border-card-border bg-background px-4 py-3"
         >
             <div className="flex flex-wrap items-start justify-between gap-3">
                 <div className="flex items-start gap-3">
@@ -176,7 +176,7 @@ function HabitListItem({
                     </div>
                 </div>
                 <div className="flex flex-wrap items-start justify-end gap-2">
-                    <span className="rounded-full bg-accent-2/35 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-foreground">
+                    <span className="rounded-md bg-accent-2/35 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-foreground">
                         Today: {todayCount}
                         {goalSuffix}
                     </span>
@@ -184,7 +184,7 @@ function HabitListItem({
                         type="button"
                         onClick={() => onSettingsClick(habit)}
                         aria-label={`Delete ${habit.name}`}
-                        className="rounded-lg border border-card-border bg-background/70 px-2.5 py-1 text-xs text-foreground transition hover:bg-background hover:cursor-pointerh"
+                        className="rounded-md border border-card-border bg-background px-2.5 py-1 text-xs text-foreground transition hover:border-muted hover:cursor-pointer"
                     >
                         Delete
                     </button>
@@ -208,7 +208,7 @@ function HabitListItem({
                             key={`${habit.id}-${index}`}
                             type="button"
                             onClick={() => onSquareClick(habit, entry.date)}
-                            className={`h-[10px] w-[10px] rounded-[3px] border border-card-border/70 transition-transform duration-150 ease-out hover:scale-125 focus-visible:scale-125 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary md:h-[12px] md:w-[12px] ${squareColor ? "" : LEVEL_CLASSES[entry.level]}`}
+                            className={`h-[10px] w-[10px] rounded-[2px] border border-heatmap-border transition-transform duration-150 ease-out hover:scale-125 focus-visible:scale-125 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary md:h-[12px] md:w-[12px] ${squareColor ? "" : LEVEL_CLASSES[entry.level]}`}
                             style={
                                 squareColor
                                     ? { backgroundColor: squareColor }
@@ -230,9 +230,9 @@ function HabitListItem({
                         </p>
                         <p>{completion}% complete</p>
                     </div>
-                    <div className="h-2 w-full rounded-full bg-accent-0">
+                    <div className="h-2 w-full rounded-sm bg-accent-0">
                         <div
-                            className="h-2 rounded-full transition-all"
+                            className="h-2 rounded-sm transition-all"
                             style={{
                                 width: `${completion}%`,
                                 backgroundColor:
@@ -469,7 +469,7 @@ export function HabitListClient({ habits }: HabitListClientProps) {
                     onClick={closeSettingsModal}
                 >
                     <section
-                        className="w-full max-w-md rounded-2xl border border-card-border bg-card p-5 shadow-modal sm:p-6"
+                        className="w-full max-w-md rounded-lg border border-card-border bg-card p-5 sm:p-6"
                         role="dialog"
                         aria-modal="true"
                         aria-label={`Settings for ${settingsHabit.name}`}
@@ -487,7 +487,7 @@ export function HabitListClient({ habits }: HabitListClientProps) {
                             <button
                                 type="button"
                                 onClick={closeSettingsModal}
-                                className="rounded-full border border-card-border bg-background/70 px-3 py-1.5 text-xs font-mono uppercase tracking-[0.12em] text-muted transition hover:text-foreground"
+                                className="rounded-md border border-card-border bg-background px-3 py-1.5 text-xs font-mono uppercase tracking-[0.12em] text-muted transition hover:border-muted hover:text-foreground"
                             >
                                 Close
                             </button>
@@ -503,7 +503,7 @@ export function HabitListClient({ habits }: HabitListClientProps) {
                                 type="button"
                                 onClick={closeSettingsModal}
                                 disabled={isDeletingHabit}
-                                className="rounded-full border border-card-border bg-background/70 px-4 py-2 text-sm text-foreground transition hover:bg-background"
+                                className="rounded-md border border-card-border bg-background px-4 py-2 text-sm text-foreground transition hover:border-muted"
                             >
                                 Cancel
                             </button>
@@ -513,7 +513,7 @@ export function HabitListClient({ habits }: HabitListClientProps) {
                                     handleDeleteHabit(settingsHabit.id)
                                 }
                                 disabled={isDeletingHabit}
-                                className="rounded-full bg-danger px-5 py-2 text-sm font-semibold text-primary-foreground transition hover:-translate-y-px hover:bg-danger-hover disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
+                                className="rounded-md bg-danger px-5 py-2 text-sm font-semibold text-primary-foreground transition hover:bg-danger-hover disabled:cursor-not-allowed disabled:opacity-70"
                             >
                                 {isDeletingHabit
                                     ? "Deleting..."
@@ -522,7 +522,7 @@ export function HabitListClient({ habits }: HabitListClientProps) {
                         </div>
                         {deleteError ? (
                             <p
-                                className="mt-3 rounded-xl border border-danger-border bg-danger-background px-3 py-2 text-sm text-danger-foreground"
+                                className="mt-3 rounded-md border border-danger-border bg-danger-background px-3 py-2 text-sm text-danger-foreground"
                                 role="alert"
                             >
                                 {deleteError}
@@ -535,7 +535,7 @@ export function HabitListClient({ habits }: HabitListClientProps) {
             {selectedHabit && selectedDate && portalRoot
                 ? createPortal(
                       <aside
-                          className={`fixed right-0 top-0 z-[100] h-dvh w-full max-w-md border-l border-card-border bg-card p-5 shadow-drawer transition-transform duration-300 ease-out sm:p-6 ${isDrawerOpen ? "translate-x-0" : "translate-x-full"}`}
+                          className={`fixed right-0 top-0 z-[100] h-dvh w-full max-w-md border-l border-card-border bg-card p-5 transition-transform duration-300 ease-out sm:p-6 ${isDrawerOpen ? "translate-x-0" : "translate-x-full"}`}
                       >
                           <div className="flex items-start justify-between gap-4">
                               <div>
@@ -551,7 +551,7 @@ export function HabitListClient({ habits }: HabitListClientProps) {
                                   onClick={() => {
                                       setIsDrawerOpen(false);
                                   }}
-                                  className="rounded-lg border border-card-border bg-background/70 px-2.5 py-1 text-sm text-foreground transition hover:bg-background"
+                                  className="rounded-md border border-card-border bg-background px-2.5 py-1 text-sm text-foreground transition hover:border-muted"
                               >
                                   Close
                               </button>
@@ -563,7 +563,7 @@ export function HabitListClient({ habits }: HabitListClientProps) {
                                       Loading logs...
                                   </p>
                               ) : logsError ? (
-                                  <p className="rounded-xl border border-danger-border bg-danger-background px-3 py-2 text-sm text-danger-foreground">
+                                  <p className="rounded-md border border-danger-border bg-danger-background px-3 py-2 text-sm text-danger-foreground">
                                       {logsError}
                                   </p>
                               ) : logs.length === 0 ? (
@@ -574,7 +574,7 @@ export function HabitListClient({ habits }: HabitListClientProps) {
                                   logs.map((log) => (
                                       <article
                                           key={log.id}
-                                          className="rounded-xl border border-card-border bg-background/70 px-3 py-2"
+                                          className="rounded-md border border-card-border bg-background px-3 py-2"
                                       >
                                           <p className="font-mono text-xs uppercase tracking-[0.12em] text-muted">
                                               {toTimeLabel(log.created_at)}

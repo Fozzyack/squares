@@ -43,7 +43,7 @@ export function DashboardProgress({
         : 0;
 
     return (
-        <div className="rounded-xl border border-card-border/80 bg-background/70 p-5">
+        <div className="rounded-lg border border-card-border bg-background p-5">
             <div className="flex items-end justify-between gap-3">
                 <p className="font-mono text-xs uppercase tracking-[0.16em] text-muted">
                     Today&apos;s progress
@@ -52,9 +52,9 @@ export function DashboardProgress({
                     {completion}%
                 </p>
             </div>
-            <div className="mt-4 h-2 rounded-full bg-accent-0">
+            <div className="mt-4 h-2 rounded-sm bg-accent-0">
                 <div
-                    className="h-2 rounded-full bg-primary transition-all"
+                    className="h-2 rounded-sm bg-primary transition-all"
                     style={{ width: `${completion}%` }}
                 />
             </div>
@@ -72,7 +72,7 @@ export function DashboardProgress({
                     <article
                         key={stat.label}
                         data-overview-card
-                        className="rounded-lg border border-card-border/80 bg-card/60 p-3"
+                        className="rounded-md border border-card-border bg-card p-3"
                     >
                         <p className="text-xs text-muted">{stat.label}</p>
                         <p className="mt-1 text-xl text-foreground">

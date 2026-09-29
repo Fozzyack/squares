@@ -41,7 +41,7 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
 
     return (
         <div className="min-h-screen pb-10">
-            <header className="border-b border-card-border bg-card/70 backdrop-blur">
+            <header className="border-b border-card-border bg-card">
                 <div className="mx-auto flex w-full max-w-5xl items-end justify-between gap-4 px-4 py-5 sm:px-6 lg:px-8">
                     <div>
                         <p className="font-mono text-xs uppercase tracking-[0.18em] text-muted">
@@ -59,7 +59,7 @@ const DashboardLayout = async ({ children }: { children: React.ReactNode }) => {
                         <form action={handleLogout}>
                             <button
                                 type="submit"
-                                className="rounded-full border border-card-border bg-background/70 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-muted transition hover:text-foreground"
+                                className="rounded-md border border-card-border bg-background px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.14em] text-muted transition hover:border-muted hover:text-foreground"
                             >
                                 Logout
                             </button>

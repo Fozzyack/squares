@@ -71,8 +71,11 @@ export default function DemoPage() {
             ref={scope}
         >
             <div className="w-full">
-                <Link href="/">
-                    <p className="mb-4 text-sm">{"<"}- Back to Landing</p>
+                <Link
+                    href="/"
+                    className="mb-4 inline-flex text-sm font-medium text-muted transition hover:text-foreground"
+                >
+                    {"<- Back to home"}
                 </Link>
                 <Card className="w-full">
                     <div className="space-y-1.5 p-5">
@@ -89,14 +92,14 @@ export default function DemoPage() {
                                 <button
                                     type="button"
                                     onClick={handleResetWater}
-                                    className="rounded-lg border border-card-border px-3 py-2 text-sm text-muted transition-colors hover:bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
+                                    className="rounded-md border border-card-border px-3 py-2 text-sm text-muted transition-colors hover:bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
                                 >
                                     Reset
                                 </button>
                                 <button
                                     type="button"
                                     onClick={handleAddWater}
-                                    className="rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
+                                    className="rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
                                 >
                                     +1
                                 </button>
@@ -112,14 +115,14 @@ export default function DemoPage() {
                                     key={id}
                                     data-square
                                     data-level={level}
-                                    className={`h-[10px] w-[10px] rounded-[3px] border border-heatmap-border md:h-[12px] md:w-[12px] ${LEVEL_CLASSES[level]}`}
+                                    className={`h-[10px] w-[10px] rounded-[2px] border border-heatmap-border md:h-[12px] md:w-[12px] ${LEVEL_CLASSES[level]}`}
                                     aria-label={`${count} cups logged`}
                                 />
                             ))}
                             <span
                                 data-square
                                 data-level={4}
-                                className="h-[10px] w-[10px] rounded-[3px] border border-heatmap-border bg-primary md:h-[12px] md:w-[12px]"
+                                className="h-[10px] w-[10px] rounded-[2px] border border-heatmap-border bg-primary md:h-[12px] md:w-[12px]"
                                 style={{
                                     opacity: Math.max(
                                         0.2,
@@ -138,9 +141,9 @@ export default function DemoPage() {
                                     {completionPercent}% complete
                                 </p>
                             </div>
-                            <div className="h-2 w-full rounded-full bg-accent-0">
+                            <div className="h-2 w-full rounded-sm bg-accent-0">
                                 <div
-                                    className="h-2 rounded-full bg-primary transition-all"
+                                    className="h-2 rounded-sm bg-primary transition-all"
                                     style={{ width: `${progressPercent}%` }}
                                 />
                             </div>
@@ -150,7 +153,7 @@ export default function DemoPage() {
                             {LEVEL_CLASSES.map((levelClass, index) => (
                                 <span
                                     key={levelClass}
-                                    className={`h-3 w-3 rounded-[3px] border border-heatmap-border ${levelClass}`}
+                                    className={`h-3 w-3 rounded-[2px] border border-heatmap-border ${levelClass}`}
                                     aria-hidden="true"
                                     title={`Intensity ${index + 1}`}
                                 />

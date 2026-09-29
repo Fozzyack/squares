@@ -74,7 +74,7 @@ export default function LoginPage() {
                         {"<- Back to home"}
                     </Link>
 
-                    <section className="w-full rounded-[20px] border border-card-border bg-card p-6 shadow-card md:p-8">
+                    <section className="w-full rounded-lg border border-card-border bg-card p-6 md:p-8">
                         <h1 className="auth-anim-item auth-anim-item-1 text-3xl leading-tight font-medium tracking-tight text-foreground md:text-[2rem]">
                             Sign in to TinyWins
                         </h1>
@@ -99,7 +99,7 @@ export default function LoginPage() {
                                     onChange={handleInputChange}
                                     autoComplete="email"
                                     placeholder="you@example.com"
-                                    className="w-full rounded-xl border border-card-border bg-input px-4 py-3 text-sm text-foreground outline-none transition focus:border-primary/70 focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-70"
+                                    className="w-full rounded-md border border-card-border bg-input px-4 py-3 text-sm text-foreground outline-none transition focus:border-primary/70 focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-70"
                                     required
                                     disabled={loading}
                                 />
@@ -131,7 +131,7 @@ export default function LoginPage() {
                                         onChange={handleInputChange}
                                         autoComplete="current-password"
                                         placeholder="Enter your password"
-                                        className="w-full rounded-xl border border-card-border bg-input px-4 py-3 pr-11 text-sm text-foreground outline-none transition focus:border-primary/70 focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-70"
+                                        className="w-full rounded-md border border-card-border bg-input px-4 py-3 pr-11 text-sm text-foreground outline-none transition focus:border-primary/70 focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-70"
                                         required
                                         disabled={loading}
                                     />
@@ -189,7 +189,7 @@ export default function LoginPage() {
 
                             {errorMsg && (
                                 <p
-                                    className="rounded-xl border border-danger-border bg-danger-background px-3 py-2 text-sm text-danger-foreground"
+                                    className="rounded-md border border-danger-border bg-danger-background px-3 py-2 text-sm text-danger-foreground"
                                     role="alert"
                                 >
                                     {errorMsg}
@@ -198,7 +198,7 @@ export default function LoginPage() {
 
                             {successMsg && (
                                 <p
-                                    className="rounded-xl border border-success-border bg-success-background px-3 py-2 text-sm text-success-foreground"
+                                    className="rounded-md border border-success-border bg-success-background px-3 py-2 text-sm text-success-foreground"
                                     role="status"
                                 >
                                     {successMsg}
@@ -208,7 +208,7 @@ export default function LoginPage() {
                             <button
                                 type="submit"
                                 disabled={loading}
-                                className="w-full rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-button transition hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
+                                className="w-full rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-70"
                             >
                                 {loading ? "Signing in..." : "Sign in"}
                             </button>

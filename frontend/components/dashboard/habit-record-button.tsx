@@ -89,7 +89,7 @@ export function HabitRecordButton({
                         type="button"
                         onClick={() => handleRecord(true)}
                         disabled={isSubmitting}
-                        className="rounded-lg border border-card-border bg-background/70 px-3 py-1.5 text-xs font-semibold text-foreground transition hover:-translate-y-px hover:bg-background disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
+                        className="rounded-md border border-card-border bg-background px-3 py-1.5 text-xs font-semibold text-foreground transition hover:border-muted disabled:cursor-not-allowed disabled:opacity-70"
                     >
                         {isUndoing ? "Undoing..." : "Undo"}
                     </button>
@@ -98,7 +98,7 @@ export function HabitRecordButton({
                     type="button"
                     onClick={() => handleRecord()}
                     disabled={isSubmitting}
-                    className={`rounded-lg px-3 py-1.5 text-xs font-semibold text-primary-foreground transition hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0 hover:cursor-pointer ${hasCustomColor ? "" : "bg-primary"}`}
+                    className={`rounded-md px-3 py-1.5 text-xs font-semibold text-primary-foreground transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-70 hover:cursor-pointer ${hasCustomColor ? "" : "bg-primary"}`}
                     style={
                         hasCustomColor
                             ? { backgroundColor: color ?? undefined }

@@ -90,73 +90,55 @@ export default function Home() {
 
     return (
         <div
-            className="relative isolate min-h-screen bg-background p-4 md:p-8"
+            className="min-h-screen bg-background px-4 py-8 sm:px-8 lg:px-12"
             ref={scope}
         >
-            <div className="theme-gradient absolute inset-0 -z-10 rounded-3xl" />
-            <main className="mx-auto grid min-h-[calc(100vh-2rem)] max-w-[1140px] items-center gap-7 py-4 md:min-h-[calc(100vh-4rem)] lg:grid-cols-[minmax(0,1fr)_minmax(320px,520px)] lg:gap-14 lg:py-0">
+            <main className="mx-auto grid min-h-[calc(100vh-4rem)] max-w-[1140px] items-center gap-12 py-8 sm:py-12 lg:grid-cols-[minmax(0,1fr)_minmax(320px,520px)] lg:gap-16 lg:py-0">
                 <section className="max-w-[560px]">
                     <p
-                        className="m-0 text-[0.74rem] font-semibold uppercase tracking-[0.12em] text-muted"
+                        className="m-0 font-mono text-xs font-medium uppercase tracking-[0.17em] text-primary"
                         data-animate="headline"
                     >
                         TinyWins Habit Tracker
                     </p>
                     <h1
-                        className="mt-3 text-4xl leading-tight font-medium tracking-tight text-foreground md:text-6xl"
+                        className="mt-5 text-[clamp(2.5rem,10vw,3.75rem)] leading-[1.06] font-medium tracking-[-0.045em] text-foreground"
                         data-animate="headline"
                     >
                         Build streaks you can see at a glance.
                     </h1>
                     <p
-                        className="mt-5 max-w-[54ch] text-base leading-relaxed text-muted md:text-lg"
+                        className="mt-6 max-w-[48ch] text-base leading-relaxed text-muted md:text-lg"
                         data-animate="subtext"
                     >
                         TinyWins turns your daily actions into a living
                         contribution map. Stay consistent, spot patterns, and
                         keep momentum with every square.
                     </p>
-                    <div className="mt-7 flex flex-wrap gap-3">
+                    <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
                         <Link
                             href="/dashboard"
-                            className="rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground shadow-button transition hover:-translate-y-px"
+                            className="inline-flex min-h-12 items-center justify-center rounded-md bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition hover:opacity-90"
                             data-animate="cta"
                         >
                             Start tracking
                         </Link>
                         <Link
                             href="/demo"
-                            className="rounded-full bg-accent-0 px-5 py-3 text-sm font-semibold text-foreground transition hover:-translate-y-px"
+                            className="inline-flex min-h-12 items-center justify-center rounded-md border border-card-border bg-card px-5 py-3 text-sm font-semibold text-foreground transition hover:border-muted"
                             data-animate="cta"
                         >
                             View small demo
                         </Link>
                     </div>
-                    <div
-                        className="mt-5 flex flex-wrap gap-4 text-[0.94rem] text-muted"
-                        data-animate="subtext"
-                    >
-                        <p className="m-0">
-                            <span className="font-bold text-foreground">
-                                182
-                            </span>{" "}
-                            days tracked
-                        </p>
-                        <p className="m-0">
-                            <span className="font-bold text-foreground">
-                                86%
-                            </span>{" "}
-                            completion rate
-                        </p>
-                    </div>
                 </section>
 
                 <section
-                    className="rounded-[20px] border border-card-border bg-card/90 p-4 shadow-card md:p-6"
+                    className="min-w-0 rounded-lg border border-card-border bg-card p-4 sm:p-6 lg:p-7"
                     aria-label="Habit heat map"
                 >
-                    <header className="mb-4 flex items-baseline justify-between gap-3">
-                        <h4 className="m-0 text-[1.05rem] font-semibold">
+                    <header className="mb-5 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 border-b border-card-border pb-5">
+                        <h4 className="m-0 text-base font-semibold tracking-tight">
                             TinyWins Activity Board
                         </h4>
                         <p className="m-0 font-mono text-xs text-muted">
@@ -164,33 +146,37 @@ export default function Home() {
                         </p>
                     </header>
 
-                    <div
-                        className="mb-2 ml-1 grid grid-cols-6 font-mono text-[0.72rem] text-muted md:text-xs"
-                        aria-hidden="true"
-                    >
-                        <span>Oct</span>
-                        <span>Nov</span>
-                        <span>Dec</span>
-                        <span>Jan</span>
-                        <span>Feb</span>
-                        <span>Mar</span>
-                    </div>
-
-                    <div
-                        className="grid auto-cols-[10px] grid-flow-col grid-rows-7 gap-1 overflow-x-auto pb-1 md:auto-cols-[12px]"
-                        role="img"
-                        aria-label="Daily habit intensity heatmap"
-                    >
-                        {activity.map(({ id, level, count }) => (
-                            <span
-                                key={id}
-                                data-square
-                                data-level={level}
-                                className={`h-[10px] w-[10px] rounded-[3px] border border-heatmap-border md:h-[12px] md:w-[12px] ${LEVEL_CLASSES[level]}`}
-                                title={`${count} completions - ${LEVEL_LABELS[level]}`}
+                    <div className="overflow-x-auto pb-2">
+                        <div className="w-max">
+                            <div
+                                className="mb-2 ml-1 grid grid-cols-6 font-mono text-[0.72rem] text-muted md:text-xs"
                                 aria-hidden="true"
-                            />
-                        ))}
+                            >
+                                <span>Oct</span>
+                                <span>Nov</span>
+                                <span>Dec</span>
+                                <span>Jan</span>
+                                <span>Feb</span>
+                                <span>Mar</span>
+                            </div>
+
+                            <div
+                                className="grid auto-cols-[10px] grid-flow-col grid-rows-7 gap-1 md:auto-cols-[12px]"
+                                role="img"
+                                aria-label="Daily habit intensity heatmap"
+                            >
+                                {activity.map(({ id, level, count }) => (
+                                    <span
+                                        key={id}
+                                        data-square
+                                        data-level={level}
+                                        className={`h-[10px] w-[10px] rounded-[2px] border border-heatmap-border md:h-[12px] md:w-[12px] ${LEVEL_CLASSES[level]}`}
+                                        title={`${count} completions - ${LEVEL_LABELS[level]}`}
+                                        aria-hidden="true"
+                                    />
+                                ))}
+                            </div>
+                        </div>
                     </div>
 
                     <div
@@ -201,7 +187,7 @@ export default function Home() {
                         {[0, 1, 2, 3, 4].map((level) => (
                             <span
                                 key={level}
-                                className={`h-[11px] w-[11px] rounded-[3px] border border-heatmap-border ${LEVEL_CLASSES[level]}`}
+                                className={`h-[11px] w-[11px] rounded-[2px] border border-heatmap-border ${LEVEL_CLASSES[level]}`}
                                 data-level={level}
                             />
                         ))}

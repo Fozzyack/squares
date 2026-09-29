@@ -94,17 +94,17 @@ export function HabitList({
     return (
         <section
             data-dashboard-section
-            className="rounded-2xl border border-card-border bg-card/85 p-5 shadow-section sm:p-7"
+            className="rounded-lg border border-card-border bg-card p-5 sm:p-7"
         >
             <div className="flex items-center justify-between gap-4">
                 <h3 className="text-2xl">Habits</h3>
-                <span className="rounded-full bg-accent-1/50 px-3 py-1 font-mono text-xs uppercase tracking-[0.16em] text-foreground">
+                <span className="rounded-md bg-accent-1/50 px-3 py-1 font-mono text-xs uppercase tracking-[0.16em] text-foreground">
                     {habits.length} total
                 </span>
             </div>
 
             {fetchError ? (
-                <p className="mt-4 rounded-xl border border-danger-border bg-danger-background px-3 py-2 text-sm text-danger-foreground">
+                <p className="mt-4 rounded-md border border-danger-border bg-danger-background px-3 py-2 text-sm text-danger-foreground">
                     We could not load your habits right now.
                 </p>
             ) : habits.length === 0 ? (

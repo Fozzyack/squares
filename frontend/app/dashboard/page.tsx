@@ -22,7 +22,7 @@ const DashboardPage = async () => {
             <main className="mx-auto flex w-full max-w-5xl flex-col gap-6 px-4 pb-12 pt-6 sm:px-6 sm:pt-8 lg:px-8">
                 <section
                     data-dashboard-section
-                    className="rounded-2xl border border-card-border bg-card/85 p-5 shadow-section backdrop-blur sm:p-7"
+                    className="rounded-lg border border-card-border bg-card p-5 sm:p-7"
                 >
                     <div className="grid gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
                         <div>

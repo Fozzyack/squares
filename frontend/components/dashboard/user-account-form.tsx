@@ -224,7 +224,7 @@ export function UserAccountDialog({ userData }: UserAccountDialogProps) {
                 onClick={handleOpen}
                 aria-label="Open account settings"
                 title="Settings"
-                className="group inline-flex h-7 w-7 items-center justify-center rounded-full border border-card-border bg-background/70 text-muted transition hover:text-foreground"
+                className="group inline-flex h-7 w-7 items-center justify-center rounded-md border border-card-border bg-background text-muted transition hover:border-muted hover:text-foreground"
             >
                 <Settings
                     className="h-4 w-4 motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:animate-spin"
@@ -236,7 +236,7 @@ export function UserAccountDialog({ userData }: UserAccountDialogProps) {
                 createPortal(
                     <div className="fixed inset-0 z-50 flex items-center justify-center bg-overlay p-4 backdrop-blur-sm">
                         <section
-                            className="max-h-[90vh] max-w-lg overflow-y-auto rounded-2xl border border-card-border bg-card p-5 shadow-modal sm:p-7"
+                            className="max-h-[90vh] max-w-lg overflow-y-auto rounded-lg border border-card-border bg-card p-5 sm:p-7"
                             role="dialog"
                             aria-modal="true"
                             aria-label="Update account settings"
@@ -250,7 +250,7 @@ export function UserAccountDialog({ userData }: UserAccountDialogProps) {
                                 <button
                                     type="button"
                                     onClick={handleClose}
-                                    className="rounded-full border border-card-border bg-background/70 px-3 py-1.5 text-xs font-mono uppercase tracking-[0.12em] text-muted transition hover:text-foreground"
+                                    className="rounded-md border border-card-border bg-background px-3 py-1.5 text-xs font-mono uppercase tracking-[0.12em] text-muted transition hover:border-muted hover:text-foreground"
                                 >
                                     Close
                                 </button>
@@ -274,7 +274,7 @@ export function UserAccountDialog({ userData }: UserAccountDialogProps) {
                                                 name="name"
                                                 value={form.name ?? ""}
                                                 onChange={handleOnChange}
-                                                className="mt-1 block w-full rounded-md border border-card-border bg-background/70 px-3 py-2 text-sm text-foreground shadow-sm focus:border-foreground focus:ring-1 focus:ring-foreground"
+                                                className="mt-1 block w-full rounded-md border border-card-border bg-background px-3 py-2 text-sm text-foreground focus:border-primary/70 focus:ring-2 focus:ring-primary/20"
                                             />
                                         </div>
                                         <div>
@@ -287,7 +287,7 @@ export function UserAccountDialog({ userData }: UserAccountDialogProps) {
                                                 value={userData.email ?? ""}
                                                 disabled
                                                 readOnly
-                                                className="mt-1 block w-full rounded-md border border-card-border bg-background/70 px-3 py-2 text-sm text-foreground/70 shadow-sm focus:border-foreground focus:ring-1 focus:ring-foreground hover:cursor-not-allowed"
+                                                className="mt-1 block w-full rounded-md border border-card-border bg-background px-3 py-2 text-sm text-foreground/70 focus:border-primary/70 focus:ring-2 focus:ring-primary/20 hover:cursor-not-allowed"
                                             />
                                         </div>
                                         <div>
@@ -303,7 +303,7 @@ export function UserAccountDialog({ userData }: UserAccountDialogProps) {
                                                 name="newPassword"
                                                 value={form.newPassword ?? ""}
                                                 onChange={handleOnChange}
-                                                className="mt-1 block w-full rounded-md border border-card-border bg-background/70 px-3 py-2 text-sm text-foreground shadow-sm focus:border-foreground focus:ring-1 focus:ring-foreground"
+                                                className="mt-1 block w-full rounded-md border border-card-border bg-background px-3 py-2 text-sm text-foreground focus:border-primary/70 focus:ring-2 focus:ring-primary/20"
                                             />
                                         </div>
                                         <div className="pt-4">
@@ -321,7 +321,7 @@ export function UserAccountDialog({ userData }: UserAccountDialogProps) {
                                                 value={form.currentPassword}
                                                 onChange={handleOnChange}
                                                 required
-                                                className="mt-1 block w-full rounded-md border border-card-border bg-background/70 px-3 py-2 text-sm text-foreground shadow-sm focus:border-foreground focus:ring-1 focus:ring-foreground"
+                                                className="mt-1 block w-full rounded-md border border-card-border bg-background px-3 py-2 text-sm text-foreground focus:border-primary/70 focus:ring-2 focus:ring-primary/20"
                                             />
                                         </div>
                                         <div className="flex items-center gap-7">
@@ -332,7 +332,7 @@ export function UserAccountDialog({ userData }: UserAccountDialogProps) {
                                                     isDeletingAccount ||
                                                     isDeleteRedirecting
                                                 }
-                                                className="self-start rounded-full border border-card-border bg-background/70 px-3 py-1.5 text-xs font-mono uppercase tracking-[0.12em] text-muted transition hover:text-foreground disabled:cursor-not-allowed disabled:opacity-50"
+                                                className="self-start rounded-md border border-card-border bg-background px-3 py-1.5 text-xs font-mono uppercase tracking-[0.12em] text-muted transition hover:border-muted hover:text-foreground disabled:cursor-not-allowed disabled:opacity-50"
                                             >
                                                 {isSubmitting
                                                     ? "Saving..."
@@ -345,7 +345,7 @@ export function UserAccountDialog({ userData }: UserAccountDialogProps) {
                                                     isDeletingAccount ||
                                                     isDeleteRedirecting
                                                 }
-                                                className="self-end rounded-full border border-red-500 bg-red-500/10 px-3 py-1.5 text-xs font-mono uppercase tracking-[0.12em] text-red-500 transition hover:bg-red-500/20 disabled:cursor-not-allowed disabled:opacity-50"
+                                                className="self-end rounded-md border border-danger-border bg-danger-background px-3 py-1.5 text-xs font-mono uppercase tracking-[0.12em] text-danger-foreground transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-50"
                                                 onClick={openDeleteModal}
                                             >
                                                 Delete Account
@@ -353,13 +353,13 @@ export function UserAccountDialog({ userData }: UserAccountDialogProps) {
                                         </div>
                                     </form>
                                     {errorMsg && (
-                                        <p className="mt-4 text-sm text-red-500">
+                                        <p className="mt-4 text-sm text-danger-foreground">
                                             {errorMsg}
                                         </p>
                                     )}
                                     {successMsg && !isDeleteModalOpen && (
                                         <p
-                                            className="mt-4 text-sm text-green-500"
+                                            className="mt-4 text-sm text-success-foreground"
                                             role="status"
                                         >
                                             {successMsg}
@@ -379,7 +379,7 @@ export function UserAccountDialog({ userData }: UserAccountDialogProps) {
                         onClick={closeDeleteModal}
                     >
                         <section
-                            className="w-full max-w-md rounded-2xl border border-card-border bg-card p-5 shadow-modal sm:p-6"
+                            className="w-full max-w-md rounded-lg border border-card-border bg-card p-5 sm:p-6"
                             role="dialog"
                             aria-modal="true"
                             aria-label="Delete account confirmation"
@@ -400,7 +400,7 @@ export function UserAccountDialog({ userData }: UserAccountDialogProps) {
                                     disabled={
                                         isDeletingAccount || isDeleteRedirecting
                                     }
-                                    className="rounded-full border border-card-border bg-background/70 px-3 py-1.5 text-xs font-mono uppercase tracking-[0.12em] text-muted transition hover:text-foreground"
+                                    className="rounded-md border border-card-border bg-background px-3 py-1.5 text-xs font-mono uppercase tracking-[0.12em] text-muted transition hover:border-muted hover:text-foreground"
                                 >
                                     Close
                                 </button>
@@ -418,7 +418,7 @@ export function UserAccountDialog({ userData }: UserAccountDialogProps) {
                                     disabled={
                                         isDeletingAccount || isDeleteRedirecting
                                     }
-                                    className="rounded-full border border-card-border bg-background/70 px-4 py-2 text-sm text-foreground transition hover:bg-background disabled:cursor-not-allowed disabled:opacity-50"
+                                    className="rounded-md border border-card-border bg-background px-4 py-2 text-sm text-foreground transition hover:border-muted disabled:cursor-not-allowed disabled:opacity-50"
                                 >
                                     Cancel
                                 </button>
@@ -428,7 +428,7 @@ export function UserAccountDialog({ userData }: UserAccountDialogProps) {
                                     disabled={
                                         isDeletingAccount || isDeleteRedirecting
                                     }
-                                    className="rounded-full bg-danger px-5 py-2 text-sm font-semibold text-primary-foreground transition hover:-translate-y-px hover:bg-danger-hover disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
+                                    className="rounded-md bg-danger px-5 py-2 text-sm font-semibold text-primary-foreground transition hover:bg-danger-hover disabled:cursor-not-allowed disabled:opacity-70"
                                 >
                                     {isDeletingAccount
                                         ? "Deleting..."
@@ -439,7 +439,7 @@ export function UserAccountDialog({ userData }: UserAccountDialogProps) {
                             </div>
                             {deleteErrorMsg ? (
                                 <p
-                                    className="mt-3 rounded-xl border border-danger-border bg-danger-background px-3 py-2 text-sm text-danger-foreground"
+                                    className="mt-3 rounded-md border border-danger-border bg-danger-background px-3 py-2 text-sm text-danger-foreground"
                                     role="alert"
                                 >
                                     {deleteErrorMsg}
@@ -447,7 +447,7 @@ export function UserAccountDialog({ userData }: UserAccountDialogProps) {
                             ) : null}
                             {successMsg ? (
                                 <p
-                                    className="mt-3 rounded-xl border border-success-border bg-success-background px-3 py-2 text-sm text-success-foreground"
+                                    className="mt-3 rounded-md border border-success-border bg-success-background px-3 py-2 text-sm text-success-foreground"
                                     role="status"
                                 >
                                     {successMsg}

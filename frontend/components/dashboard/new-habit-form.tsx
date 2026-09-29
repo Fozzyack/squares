@@ -166,7 +166,7 @@ export function NewHabitForm() {
             <button
                 type="button"
                 onClick={handleOpen}
-                className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-button transition hover:-translate-y-px"
+                className="rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:opacity-90"
             >
                 + New habit
             </button>
@@ -178,7 +178,7 @@ export function NewHabitForm() {
                           onClick={handleClose}
                       >
                           <section
-                              className="max-h-[90vh] w-full max-w-5xl overflow-y-auto rounded-2xl border border-card-border bg-card p-5 shadow-modal sm:p-7"
+                              className="max-h-[90vh] w-full max-w-5xl overflow-y-auto rounded-lg border border-card-border bg-card p-5 sm:p-7"
                               role="dialog"
                               aria-modal="true"
                               aria-label="Create new habit"
@@ -196,7 +196,7 @@ export function NewHabitForm() {
                                   <button
                                       type="button"
                                       onClick={handleClose}
-                                      className="rounded-full border border-card-border bg-background/70 px-3 py-1.5 text-xs font-mono uppercase tracking-[0.12em] text-muted transition hover:text-foreground hover:cursor-pointer"
+                                      className="rounded-md border border-card-border bg-background px-3 py-1.5 text-xs font-mono uppercase tracking-[0.12em] text-muted transition hover:border-muted hover:text-foreground hover:cursor-pointer"
                                   >
                                       Close
                                   </button>
@@ -218,7 +218,7 @@ export function NewHabitForm() {
                                                   value={form.name}
                                                   onChange={handleOnChange}
                                                   placeholder="Drink water"
-                                                  className="w-full rounded-xl border border-card-border bg-input px-4 py-3 text-sm text-foreground outline-none transition focus:border-primary/70 focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-70"
+                                                  className="w-full rounded-md border border-card-border bg-input px-4 py-3 text-sm text-foreground outline-none transition focus:border-primary/70 focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-70"
                                                   required
                                                   disabled={isSubmitting}
                                               />
@@ -235,7 +235,7 @@ export function NewHabitForm() {
                                                   max={9999}
                                                   value={form.goal}
                                                   onChange={handleOnChange}
-                                                  className="w-full rounded-xl border border-card-border bg-input px-4 py-3 text-sm text-foreground outline-none transition focus:border-primary/70 focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-70"
+                                                  className="w-full rounded-md border border-card-border bg-input px-4 py-3 text-sm text-foreground outline-none transition focus:border-primary/70 focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-70"
                                                   required
                                                   disabled={isSubmitting}
                                               />
@@ -252,7 +252,7 @@ export function NewHabitForm() {
                                                   max={9999}
                                                   value={form.increment}
                                                   onChange={handleOnChange}
-                                                  className="w-full rounded-xl border border-card-border bg-input px-4 py-3 text-sm text-foreground outline-none transition focus:border-primary/70 focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-70"
+                                                  className="w-full rounded-md border border-card-border bg-input px-4 py-3 text-sm text-foreground outline-none transition focus:border-primary/70 focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-70"
                                                   required
                                                   disabled={isSubmitting}
                                               />
@@ -268,7 +268,7 @@ export function NewHabitForm() {
                                                   value={form.unit}
                                                   onChange={handleOnChange}
                                                   placeholder="cups"
-                                                  className="w-full rounded-xl border border-card-border bg-input px-4 py-3 text-sm text-foreground outline-none transition focus:border-primary/70 focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-70"
+                                                  className="w-full rounded-md border border-card-border bg-input px-4 py-3 text-sm text-foreground outline-none transition focus:border-primary/70 focus:ring-2 focus:ring-primary/20 disabled:cursor-not-allowed disabled:opacity-70"
                                                   disabled={isSubmitting}
                                               />
                                           </label>
@@ -289,10 +289,10 @@ export function NewHabitForm() {
                                                                   key={
                                                                       option.value
                                                                   }
-                                                                  className={`inline-flex cursor-pointer items-center gap-2 rounded-full border px-3 py-1.5 text-xs transition ${
+                                                                  className={`inline-flex cursor-pointer items-center gap-2 rounded-md border px-3 py-1.5 text-xs transition ${
                                                                       isSelected
                                                                           ? "border-primary/70 bg-primary/10 text-foreground"
-                                                                          : "border-card-border bg-background/60 text-muted"
+                                                                          : "border-card-border bg-background text-muted"
                                                                   }`}
                                                               >
                                                                   <input
@@ -331,7 +331,7 @@ export function NewHabitForm() {
 
                                       {errorMsg && (
                                           <p
-                                              className="rounded-xl border border-danger-border bg-danger-background px-3 py-2 text-sm text-danger-foreground"
+                                              className="rounded-md border border-danger-border bg-danger-background px-3 py-2 text-sm text-danger-foreground"
                                               role="alert"
                                           >
                                               {errorMsg}
@@ -342,14 +342,14 @@ export function NewHabitForm() {
                                           <button
                                               type="button"
                                               onClick={handleClose}
-                                              className="rounded-full border border-card-border bg-background/70 px-4 py-2 text-sm text-foreground transition hover:bg-background"
+                                              className="rounded-md border border-card-border bg-background px-4 py-2 text-sm text-foreground transition hover:border-muted"
                                           >
                                               Cancel
                                           </button>
                                           <button
                                               type="submit"
                                               disabled={isSubmitting}
-                                              className="rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-button transition hover:-translate-y-px disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:translate-y-0"
+                                              className="rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground transition hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-70"
                                           >
                                               {isSubmitting
                                                   ? "Adding habit..."
@@ -358,7 +358,7 @@ export function NewHabitForm() {
                                       </div>
                                   </form>
 
-                                  <aside className="rounded-xl border border-card-border bg-background/55 p-4 lg:sticky lg:top-0">
+                                  <aside className="rounded-lg border border-card-border bg-background p-4 lg:sticky lg:top-0">
                                       <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-muted">
                                           Live preview
                                       </p>
@@ -378,7 +378,7 @@ export function NewHabitForm() {
                                               (level, index) => (
                                                   <span
                                                       key={`preview-${index}`}
-                                                      className="h-[11px] w-[11px] rounded-[3px] border border-card-border/70"
+                                                      className="h-[11px] w-[11px] rounded-[2px] border border-heatmap-border"
                                                       style={{
                                                           backgroundColor:
                                                               hexToRgba(
@@ -405,9 +405,9 @@ export function NewHabitForm() {
                                               </p>
                                               <p>{previewProgress}% of goal</p>
                                           </div>
-                                          <div className="h-2 w-full rounded-full bg-accent-0">
+                                          <div className="h-2 w-full rounded-sm bg-accent-0">
                                               <div
-                                                  className="h-2 rounded-full transition-all"
+                                                  className="h-2 rounded-sm transition-all"
                                                   style={{
                                                       width: `${previewProgress}%`,
                                                       backgroundColor:
